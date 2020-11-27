@@ -1,0 +1,23 @@
+{
+    "compilerOptions": {
+      "module": "commonjs",
+      "target": "es2020",
+      "lib": ["es2020"],
+      "moduleResolution": "node",
+      "rootDir": "./src",
+      "outDir": "./dist",
+      "baseUrl": ".",
+      "typeRoots": ["./node_modules/@types", "./src/@types"],
+      "allowJs": true,
+      "removeComments": true,
+      "esModuleInterop": true,
+      "noImplicitAny": true,
+      "sourceMap": true,
+      "forceConsistentCasingInFileNames": true,
+      "paths": {
+        "*": ["./node_modules/*", "./src/types/*"]
+      }
+    },
+    "include": ["./src/**/*"],
+    "exclude": ["./node_modules", "./dist"]
+}
