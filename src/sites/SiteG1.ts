@@ -1,9 +1,8 @@
 import { SiteBase } from './SiteBase';
 import { SiteInterface } from './SiteInterface';
 import { News } from './News';
-import fetch from 'node-fetch';
 import { HTMLElement, parse } from 'node-html-parser';
-import { SaveEnum } from '../save/SaveEnum';
+import { fetchSiteHtml } from '../utils/http/http_utils';
 
 export class SiteG1 extends SiteBase implements SiteInterface {
   constructor() {
@@ -11,21 +10,14 @@ export class SiteG1 extends SiteBase implements SiteInterface {
     super(url);
   }
 
-  async fetchNews(): Promise<News[]> {
-    let result: Array<News>;
+  async fetchNews(): Promise<Array<News>> {
+    const html = await fetchSiteHtml(this.url);
+    if (html === null) {
+      return null;
+    }
 
-    await fetch(this.url)
-      .then((res) => res.text())
-      .then((body) => {
-        result = this.parseNews(body);
-      });
-
-    this.news = result;
-    return result;
-  }
-
-  async saveNews(resource: SaveEnum): Promise<boolean> {
-    return await super.saveNews(resource);
+    this.news = this.parseNews(html);
+    return this.news;
   }
 
   private parseNews(body: string): Array<News> {
@@ -53,7 +45,7 @@ export class SiteG1 extends SiteBase implements SiteInterface {
 
   private getNewsDescription(post: HTMLElement): string {
     const descriptionElement = post.querySelector('.feed-post-body-resumo');
-    if (descriptionElement == null) {
+    if (descriptionElement === null) {
       return null;
     }
 

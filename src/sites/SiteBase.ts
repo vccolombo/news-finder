@@ -14,6 +14,10 @@ export abstract class SiteBase {
     return this.url;
   }
 
+  getNews(): Array<News> {
+    return this.news;
+  }
+
   async saveNews(resource: SaveEnum): Promise<boolean> {
     if (resource === SaveEnum.CONSOLE) {
       const console = new SaveConsole();
