@@ -1,5 +1,5 @@
 import fetch from 'node-fetch';
-import { Logger } from '../../logs/Logger';
+import { Logger } from '../logs/Logger';
 
 export async function fetchSiteHtml(url: string): Promise<string> {
   let result: string;

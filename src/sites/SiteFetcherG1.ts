@@ -1,16 +1,12 @@
-import { SiteBase } from './SiteBase';
-import { SiteInterface } from './SiteInterface';
-import { News } from './News';
+import { SiteFetcher } from './SiteFetcher';
+import { News } from '../news/News';
 import { HTMLElement, parse } from 'node-html-parser';
-import { fetchSiteHtml } from '../utils/http/fetchSiteHtml';
+import { fetchSiteHtml } from './fetchSiteHtml';
 
-export class SiteG1 extends SiteBase implements SiteInterface {
-  constructor() {
-    const url = 'https://g1.globo.com/';
-    super(url);
-  }
+export class SiteFetcherG1 extends SiteFetcher {
+  url = 'https://g1.globo.com/';
 
-  async fetchNews(): Promise<Array<News>> {
+  async fetch(): Promise<Array<News>> {
     const html = await fetchSiteHtml(this.url);
     if (html === null) {
       return null;
