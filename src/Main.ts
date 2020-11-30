@@ -1,8 +1,9 @@
 import { SiteFetcher } from './sites/SiteFetcher';
 import { SiteFetcherG1 } from './sites/SiteFetcherG1';
 import { NewsProcessor } from './processors/NewsProcessor';
-import { NewsProcessorSaveCSV } from './processors/csv/NewsProcessorSaveCSV';
 import { News } from './news/News';
+import { NewsProcessorSaveCSV } from './processors/csv/NewsProcessorSaveCSV';
+import { NewsProcessorShowOnConsole } from './processors/console/NewsProcessorShowOnConsole';
 
 export class Main {
   sfs = new Array<SiteFetcher>();
@@ -26,6 +27,7 @@ export class Main {
 
   private insertProcessors(): void {
     this.nps.push(new NewsProcessorSaveCSV('output/news.csv', '|'));
+    this.nps.push(new NewsProcessorShowOnConsole());
   }
 
   private async fetchNews(): Promise<Array<News>> {

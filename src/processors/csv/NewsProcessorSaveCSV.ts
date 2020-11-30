@@ -8,7 +8,7 @@ export class NewsProcessorSaveCSV extends NewsProcessor {
   private path: string;
   private separator: string;
 
-  constructor(path: string, separator: string) {
+  constructor(path: string, separator = ',') {
     super();
 
     this.path = path;
