@@ -2,7 +2,7 @@ import { SiteBase } from './SiteBase';
 import { SiteInterface } from './SiteInterface';
 import { News } from './News';
 import { HTMLElement, parse } from 'node-html-parser';
-import { fetchSiteHtml } from '../utils/http/http_utils';
+import { fetchSiteHtml } from '../utils/http/fetchSiteHtml';
 
 export class SiteG1 extends SiteBase implements SiteInterface {
   constructor() {

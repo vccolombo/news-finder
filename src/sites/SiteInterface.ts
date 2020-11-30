@@ -1,5 +1,5 @@
 import { News } from './News';
-import { SaveEnum } from '../save/SaveEnum';
+import { SaveEnum } from '../save/Save';
 
 export interface SiteInterface {
   getUrl(): string;

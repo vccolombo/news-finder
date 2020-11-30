@@ -1,6 +1,5 @@
 import { News } from './News';
-import { SaveConsole } from '../save/SaveConsole';
-import { SaveEnum } from '../save/SaveEnum';
+import { SaveEnum, Save } from '../save/Save';
 
 export abstract class SiteBase {
   protected url: string;
@@ -18,12 +17,11 @@ export abstract class SiteBase {
     return this.news;
   }
 
-  async saveNews(resource: SaveEnum): Promise<boolean> {
+  async saveNews(resource: SaveEnum, savePath?: string): Promise<boolean> {
     if (resource === SaveEnum.CONSOLE) {
-      const console = new SaveConsole();
-      return await console.save(this.news);
+      return await Save.toConsole(this.news);
     } else if (resource === SaveEnum.CSV) {
-      throw new Error('Method not implemented.');
+      return await Save.toCSV(this.news, savePath, '|');
     } else if (resource === SaveEnum.JSON) {
       throw new Error('Method not implemented.');
     } else {
