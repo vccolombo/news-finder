@@ -8,5 +8,5 @@ export abstract class SiteFetcher {
     return this.news;
   }
 
-  abstract async fetch(): Promise<Array<News>>;
+  abstract fetch(): Promise<Array<News>>;
 }

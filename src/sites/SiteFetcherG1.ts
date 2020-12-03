@@ -41,7 +41,9 @@ export class SiteFetcherG1 extends SiteFetcher {
 
   private getNewsDescription(post: HTMLElement): string {
     const descriptionElement = post.querySelector('.feed-post-body-resumo');
-
-    return descriptionElement?.rawText;
+    if (descriptionElement === null) {
+      return null;
+    }
+    return descriptionElement.rawText;
   }
 }
